@@ -1,0 +1,45 @@
+<div class="panel-heading">
+  <div class="container-fluid">
+  </div>
+  <div class="container">
+    <h1>Register Here</h1>
+  </div>
+</div>
+<my-nav></my-nav>
+
+<div class='panel-body'>
+<div class="container">
+    <form class="form" name='myForm'>
+      <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" class='form-control' id='username' ng-model="user.username" ng-required="true">
+        <kbd ng-if='userErr'>Username taken! Please try another.</kbd>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class='form-control' id='password' ng-model="user.password" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class='form-control' id='email' ng-model="user.email" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class='form-control' id='location' ng-model="user.location" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="number" class='form-control' id='phone' ng-model="user.phone" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="usertype">You are: </label>
+        <select class="form-control" name="usertype" id='usertype' ng-model="user.usertype">
+          <option value="c" selected>Company</option>
+          <option value="s">Job Seeker</option>
+        </select>
+      </div>
+
+      <input type="button" class='btn btn-primary' value="Register" ng-click='reg(user)' ng-disabled='amyForm.$invalid'>
+    </form>
+</div>
+</div>

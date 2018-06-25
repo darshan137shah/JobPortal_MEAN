@@ -1,0 +1,25 @@
+<div class="panel-heading">
+  <div class="container-fluid">
+  </div>
+  <div class="container">
+    <h1>Sign In</h1>
+  </div>
+</div>
+<my-nav></my-nav>
+
+<div class='panel-body'>
+<div class="container">
+    <form class="form" name='myForm'>
+      <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" class='form-control' id='username' ng-model="user.username" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class='form-control' id='password' ng-model="user.password" ng-required="true">
+      </div>
+      <kbd ng-if='loginErr'>Invalid Username or Password! Please try another.</kbd>
+      <input type="button" class='btn btn-primary' value="Login" ng-click='login(user)' ng-disabled='amyForm.$invalid'>
+    </form>
+</div>
+</div>

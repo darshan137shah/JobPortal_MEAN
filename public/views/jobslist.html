@@ -1,0 +1,18 @@
+<div class="panel-heading">
+  <div class="container">
+    <h3><em>Followings are for you:</em></h3>
+  </div>
+</div>
+
+<my-nav></my-nav>
+
+<div class="panel-body">
+  <div class="container">
+    <ul class='list' ng-repeat="job in availableList">
+      <li><h2>{{job.jobtitle}}</h2></li>
+      <li><h3>{{job.joblocation}}</h2></li>
+      <li><h3><em>{{job.jobdesc}}</em></h3></li>
+      <li><p><em>{{job.jobkeywords}}</p></em></li>
+    </ul>
+  </div>
+</div>

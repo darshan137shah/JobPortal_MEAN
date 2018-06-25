@@ -1,0 +1,34 @@
+<div class="panel-heading">
+  <div class="container-fluid">
+  </div>
+  <div class="container">
+    <h1>Please enter the job details</h1>
+  </div>
+</div>
+<my-nav></my-nav>
+
+<div class='panel-body'>
+<div class="container">
+    <form class="form" name='myForm'>
+      <div class="form-group">
+        <label for="jobtitle">Title</label>
+        <input type="text" class='form-control' id='jobtitle' ng-model="job.jobtitle" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="jobdesc">Description</label>
+        <input type="password" class='form-control' id='jobdesc' ng-model="job.jobdesc" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="jobkeywords">Key Words</label>
+        <input type="text" class='form-control' id='jobkeywords' ng-model="job.jobkeywords" ng-required="true">
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class='form-control' id='location' ng-model="job.joblocation" ng-required="true">
+      </div>
+
+      <input type="button" class='btn btn-primary' value="Post Job" ng-click='postjob(job)' ng-disabled='myForm.$invalid'>
+      <kbd ng-if='postSuccess'>Job Posted!</kbd>
+    </form>
+</div>
+</div>
