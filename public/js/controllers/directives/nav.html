@@ -1,6 +1,7 @@
 <ul class="nav nav-tabs ">
   <li role="presentation" ><a href="#/home/{{activeUser}}">Home</a></li>
   <li role="presentation" ng-hide='activeUser'><a href="#/login">Login</a></li>
+  <li role="presentation" ng-hide='activeUser'><a href="#/reg">Sign up</a></li>
   <li role="presentation" ng-show='activeUser && isCompany'><a href="" ng-click='go()'>Post Job</a></li>
   <li role="presentation" ng-show='activeUser'><a href="" ng-click='goSearch()'>Search Job</a></li>
   <li role="presentation" ng-show='activeUser'><a href="" ng-click="logout()">Logout</a></li>

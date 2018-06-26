@@ -6,7 +6,6 @@ app.controller('jobslist-ct', ['$scope', '$rootScope','$location','user_service'
   $scope.activeUser = user_service.getnewUser();
   $scope.availableList = job_service.getjobs();
 
-
   $scope.nojobs = false;
   $scope.saved=false;
   if($scope.availableList.length == 0) {
@@ -14,17 +13,18 @@ app.controller('jobslist-ct', ['$scope', '$rootScope','$location','user_service'
   }
 
   $scope.savejob = function(id) {
-
     $scope.userwithjobid = {
       username: $scope.activeUser,
       jobid: id
     };
 
+    console.log('It is triggering here');
     account_service.savejob($scope.userwithjobid).then(function(res) {
       if(res) {
         $scope.saved=true;
-
       }
+    }, function(err) {
+      console.log(err);
     })
   }
 

@@ -93,6 +93,9 @@ app.factory('account_service', function($http, $rootScope, $q, $location) {
     },
 
     savejob: function(userwithjobid) {
+      console.log('From service')
+      console.log(userwithjobid);
+      console.log('From service')
       var defer = $q.defer();
       $http.post('http://localhost:3000/savejob', userwithjobid).then(function(resp) {
         defer.resolve(resp)

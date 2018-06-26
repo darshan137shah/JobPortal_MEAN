@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="alert alert-info" role="alert">
-        <h2>Search Available | Saved Jobs</h2>
+        <h2>Search Available</h2>
       </div>
       <form name='myForm'>
         <div class="form-group">
@@ -31,9 +31,9 @@
 
     <div class="col-md-6">
       <div class="alert alert-info" role="alert">
-        <h2>Your saved jobs</h2>
+        <h2>Your Saved Jobs</h2>
       </div>
-      <button class="btn btn-primary" name="savedjobsbtn" type="button" ng-click="findsaved(search)">Show Saved <span class="badge">{{savedjobscount}}</span></button>
+      <button class="btn btn-primary" name="savedjobsbtn" type="button" ng-click="findsaved(search)">Show Saved <span class="badge" ng-bind='savedjobscount'></span></button>
     </div>
   </div>
 

@@ -62,6 +62,8 @@ app.post('/newAccount', function(req, res) {
   users.create(req.body, function(err, data) {
     if(!err) {
       res.send(data);
+    } else {
+      console.log(err)
     }
   })
 })
@@ -91,10 +93,14 @@ app.post('/savejob', function(req, res) {
   username = req.body.username;
   jobid = req.body.jobid;
   jobcount = 'jobid_' + jobid;
-
-  users.findOneAndUpdate({'username': username}, {$push: {'savedjobs': jobid}} ,function(err, data) {
+  console.log("username is : ");
+  console.log(username);
+  users.findOneAndUpdate({'username': username}, {$addToSet: {'savedjobs': jobid}} , function(err, data) {
     if(!err) {
       res.send(data);
+    } else {
+      console.log("Error is there")
+      console.log(err);
     }
   })
 

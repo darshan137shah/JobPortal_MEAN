@@ -18,7 +18,7 @@
     <div href="#" class="list-group-item">
       <h4 class="list-group-item-heading"><strong>Details</strong></h4>
       <h4 class="list-group-item-heading">{{job.jobdesc}}</h4>
-      <input type='button' ng-click='savejob(job.jobid)' value='Save Job' class='btn btn-info'>
+      <input type='button' ng-click='savejob(job.jobid)' value='Save Job' class='btn btn-info' ng-disabled='ifSaved'>
       <kbd ng-if='saved'>Job Saved</kbd>
     </div>
   </div>
