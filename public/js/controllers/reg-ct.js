@@ -9,6 +9,7 @@ app.controller('reg-ct', ['$scope', '$rootScope','$location','user_service','acc
   $rootScope.$on('currentUserEvent', function(event, data) {
     $scope.activeUser = data;
   })
+//  user_service.ifCompany().then(function() {$scope.isCompany = true}, function() {$scope.isCompany = false});
 
   $scope.reg = function(user) {
 
@@ -24,6 +25,10 @@ app.controller('reg-ct', ['$scope', '$rootScope','$location','user_service','acc
           $scope.userErr = true;
       }
     })
+  }
+
+  $scope.logout = function() {
+    user_service.logout();
   }
 
 //Controller Ends

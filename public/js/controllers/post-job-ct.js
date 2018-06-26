@@ -5,6 +5,7 @@ app.controller('post-job-ct', ['$scope', '$rootScope','$location','user_service'
   $scope.postjob = true;
   $scope.activeUser = user_service.getnewUser();
   $scope.job = {};
+ user_service.ifCompany().then(function() {$scope.isCompany = true}, function() {$scope.isCompany = false});
 
   $scope.postSuccess = false;
   $scope.postjob = function(post) {
@@ -15,6 +16,14 @@ app.controller('post-job-ct', ['$scope', '$rootScope','$location','user_service'
         $scope.job = {};
       })
     })
+  }
+
+  $scope.go = function() {
+    $location.path('/home/' + $scope.activeUser + '/postjob');
+  }
+
+  $scope.goSearch = function() {
+    $location.path('/home/' + $scope.activeUser + '/searchjob');
   }
 
   $scope.logout = function() {

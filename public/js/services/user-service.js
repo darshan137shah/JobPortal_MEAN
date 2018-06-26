@@ -34,12 +34,13 @@ app.factory('user_service', function($http, $q, $rootScope, $location) {
             if(accountType == 'c') {
               defer.resolve();
             } else {
-              console.log('Its not available');
               defer.reject();
             }
           }
         });
       } else {
+        $location.path('/');
+        defer.reject();
       }
       return defer.promise;
     },
@@ -89,6 +90,14 @@ app.factory('account_service', function($http, $rootScope, $q, $location) {
         defer.resolve(resp)
       })
       return defer.promise;
+    },
+
+    savejob: function(userwithjobid) {
+      var defer = $q.defer();
+      $http.post('http://localhost:3000/savejob', userwithjobid).then(function(resp) {
+        defer.resolve(resp)
+      })
+      return defer.promise;
     }
 
   }
@@ -124,6 +133,14 @@ app.factory('job_service', function($http, $rootScope, $q, $location) {
       return defer.promise;
     },
 
+    listsavedjobs: function(username) {
+      var defer = $q.defer();
+      $http.post('http://localhost:3000/listjobs', username).then(function(resp) {
+        defer.resolve(resp)
+      })
+      return defer.promise;
+    },
+
     setjobs: function(data) {
       jobslist = data;
       console.log(jobslist);
@@ -131,7 +148,12 @@ app.factory('job_service', function($http, $rootScope, $q, $location) {
     },
 
     getjobs: function() {
-      return jobslist;
+      if(localStorage.user && jobslist) {
+        return jobslist;
+      } else if(!jobslist || jobslist == undefined) {
+        $location.path('/')
+        return false;
+      }
     }
 
     // getAccount: function(user) {

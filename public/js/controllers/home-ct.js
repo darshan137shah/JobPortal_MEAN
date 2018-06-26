@@ -12,12 +12,10 @@ app.controller('home-ct', ['$scope', '$rootScope','$location','user_service','ac
   });
 
   $scope.go = function() {
-    console.log("Triggering")
     $location.path('/home/' + $scope.activeUser + '/postjob');
   }
 
   $scope.goSearch = function() {
-    console.log("Triggering")
     $location.path('/home/' + $scope.activeUser + '/searchjob');
   }
 

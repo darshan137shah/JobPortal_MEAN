@@ -3,16 +3,23 @@
     <h3><em>Followings are for you:</em></h3>
   </div>
 </div>
-
 <my-nav></my-nav>
 
-<div class="panel-body">
-  <div class="container">
-    <ul class='list' ng-repeat="job in availableList">
-      <li><h2>{{job.jobtitle}}</h2></li>
-      <li><h3>{{job.joblocation}}</h2></li>
-      <li><h3><em>{{job.jobdesc}}</em></h3></li>
-      <li><p><em>{{job.jobkeywords}}</p></em></li>
-    </ul>
+<div class='panel-body container'>
+
+  <h1 ng-show='nojobs'> <span class="label label-info"> No jobs available for the searched criteria, Please try again</span></h1>
+
+  <div class="list-group" ng-repeat='job in availableList'>
+    <div class="list-group-item active">
+      <h4 class="list-group-item-heading">{{job.jobtitle}}</h4>
+      <p class="list-group-item-text"><em>Location: </em> {{job.joblocation}}</p>
+      <kbd class="list-group-item-text"><em> Tags: </em> {{job.jobkeywords}}</kbd>
+    </div>
+    <div href="#" class="list-group-item">
+      <h4 class="list-group-item-heading"><strong>Details</strong></h4>
+      <h4 class="list-group-item-heading">{{job.jobdesc}}</h4>
+      <input type='button' ng-click='savejob(job.jobid)' value='Save Job' class='btn btn-info'>
+      <kbd ng-if='saved'>Job Saved</kbd>
+    </div>
   </div>
 </div>

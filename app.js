@@ -33,7 +33,7 @@ var usersSchema = new mongoose.Schema({
 	location: String,
 	phone: Number,
 	usertype: String,
-	savedjob: [{jobid: Number}]
+	savedjobs: []
 });
 
 var users = mongoose.model("users", usersSchema);
@@ -42,8 +42,6 @@ var users = mongoose.model("users", usersSchema);
 // ===========
 // APP Routes
 // ===========
-
-
 
 //----------------GET DATA REQ
 app.get('/', function(req, res) {
@@ -88,15 +86,27 @@ app.post('/getAccount', function(req, res) {
   })
 })
 
+app.post('/savejob', function(req, res) {
+
+  username = req.body.username;
+  jobid = req.body.jobid;
+  jobcount = 'jobid_' + jobid;
+
+  users.findOneAndUpdate({'username': username}, {$push: {'savedjobs': jobid}} ,function(err, data) {
+    if(!err) {
+      res.send(data);
+    }
+  })
+
+})
+
 app.get('/findjobslength', function(req, res) {
   Job.find({}, function(err, data) {
-    console.log(data);
     res.send(data);
   })
 })
 
 app.post('/postjob', function(req, res) {
-  console.log(req.body)
   Job.create(req.body, function(err, data) {
     if(!err) {
       res.send(data);
@@ -105,15 +115,30 @@ app.post('/postjob', function(req, res) {
 })
 
 app.post('/findjobs', function(req, res) {
-
-  console.log(req.body);
-
   Job.find(req.body, function(err,data) {
     if(!err) {
-      console.log(data);
       res.send(data);
     }
   })
+})
+
+app.post('/listjobs', function(req, res){
+  users.aggregate([
+    {$match:
+      {'username': req.body.username}
+    },
+    {$lookup:
+       {from: 'jobs',
+        localField: 'savedjobs',
+        foreignField: 'jobid',
+        as: "jobs"}
+    }
+  ], function(err, data) {
+    if(!err) {
+      res.send(data);
+    }
+  })
+
 })
 // ===========
 // Mongo & App Config

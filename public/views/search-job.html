@@ -4,20 +4,37 @@
   </div>
 </div>
 <my-nav></my-nav>
-<div class="panel-body">
-  <div class="container">
-    <div class="form-group">
-      <label for="searchby">Search By: </label>
-      <select class="form-control" name="searchby" id='searchby' ng-model="search.searchby">
-        <option value="jobtitle" selected>Title</option>
-        <option value="jobkeywords">Keywords</option>
-        <option value="joblocation">Location</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <input type="text" class= 'form-control' name="keyword" ng-model="search.keyword" placeholder="Enter keywords">
+
+<div class="panel-body container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="alert alert-info" role="alert">
+        <h2>Search Available | Saved Jobs</h2>
+      </div>
+      <form name='myForm'>
+        <div class="form-group">
+          <label for="searchby">Search By: </label>
+          <select class="form-control" name="searchby" id='searchby' ng-model="search.searchby" ng-required="true">
+            <option value="jobtitle" selected>Title</option>
+            <option value="jobkeywords">Keywords</option>
+            <option value="joblocation">Location</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="text" class= 'form-control' name="keyword" ng-model="search.keyword" placeholder="Enter keywords" ng-required="true">
+        </div>
+
+        <input type="button" class='btn btn-primary' name="searchbtn" value="Search Available" ng-click='findavailable(search)' ng-disabled='myForm.$invalid'>
+        <!-- <input type="button" class='btn btn-primary' name="searchbtn" value="Search Saved" ng-click='findsaved(search)' ng-disabled='myForm.$invalid'> -->
+      </form>
     </div>
 
-    <input type="button" class='btn btn-primary' name="searchbtn" value="Search" ng-click='find(search)'>
+    <div class="col-md-6">
+      <div class="alert alert-info" role="alert">
+        <h2>Your saved jobs</h2>
+      </div>
+      <button class="btn btn-primary" name="savedjobsbtn" type="button" ng-click="findsaved(search)">Show Saved <span class="badge">{{savedjobscount}}</span></button>
+    </div>
   </div>
+
 </div>

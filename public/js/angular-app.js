@@ -51,5 +51,15 @@ app.config(function($routeProvider) {
     }]
   })
 
+  .when('/home/:username/savedjobs', {
+    templateUrl: '../views/savedjobslist.html',
+    controller: 'savedjobslist-ct',
+    resolve: ['user_service', function(user_service) {
+      return user_service.checkSession();
+    }]
+  })
+
+  .otherwise({redirectTo:'/'});
+
 // config ends
 })
